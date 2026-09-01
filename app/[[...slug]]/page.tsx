@@ -1,4 +1,5 @@
 import { cacheLife, cacheTag } from "next/cache";
+import { headers } from "next/headers";
 
 export const instant = false;
 
@@ -21,6 +22,12 @@ async function getCachedGreeting(slug: string[]) {
 
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+
+  if (slug.join("/") === "paard/kip") {
+    const customerId = (await headers()).get('Prepr-Customer-Id');
+    console.log(`customerId=${customerId}`);
+  }
+
   const greeting = await getCachedGreeting(slug);
   
   return (
