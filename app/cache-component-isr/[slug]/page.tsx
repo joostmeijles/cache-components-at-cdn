@@ -1,10 +1,11 @@
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 
 export const instant = false;
 
 async function getCachedGreeting(slug: string) {
   "use cache: remote";
   cacheLife("hours");
+  cacheTag("cache-component-isr");
 
   // Simulate a slow data fetch — this only runs once per cache entry.
   await new Promise((resolve) => setTimeout(resolve, 1000));
