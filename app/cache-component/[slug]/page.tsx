@@ -3,7 +3,7 @@ import { cacheLife } from "next/cache";
 export const instant = false;
 
 async function getCachedGreeting(slug: string) {
-  "use cache";
+  "use cache: remote";
   cacheLife("hours");
 
   // Simulate a slow data fetch — this only runs once per cache entry.
